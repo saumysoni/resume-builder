@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ow/m/JAavROw+dkIHsqcr9N45mfkfVkmgEj/uv1dMr8JBVz4YSVIksyFLEi6kTNjYtToohRl4gjjq2vhYRnLJg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Saumya\\OneDrive\\Desktop\\nirma\\7 Sem\\MinorProject\\resume-api\\resume-api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Saumya\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.10\\microsoft.aspnetcore.openapi.7.0.10.nupkg.sha512",
+    "C:\\Users\\Saumya\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\Saumya\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\Saumya\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\Saumya\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\Saumya\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\Saumya\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
