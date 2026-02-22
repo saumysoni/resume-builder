@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="font-family: Arial, sans-serif;
+line-height: 1.6;
+margin: 20px;">
+    <div *ngIf="resumeData">
+        <div *ngIf="resumeData.template_id==1">
+            <div id="resume-container" class="container"
+                style="margin: auto; display: flex;border: rgb(97, 95, 95) solid;border-radius: 10px;border-width: 1px; width: 90%;">
+                <div id="resume" class="resume"
+                    style="display: flex;flex-wrap: wrap;justify-content: center;width: 100%;">
+                    <div style="width: 100%;text-align: center;">
+                        <br>
+                        <br>
+                        <h1>{{resumeData.full_name}}</h1>
+                        <i style="font-size: smaller;">{{resumeData.description}}</i>
+                        <br>
+                        <br>
+                        {{resumeData.bio}}
+                        <p>Email: {{resumeData.email}} | Phone: {{resumeData.contact_no}}</p>
+                        <p>LinkedIn: {{resumeData.linkedin}} | Github : {{resumeData.github}}
+                        </p>
+                        <br>
+                        <br>
+                        <hr style="text-align: center !important; width:100% !important;">
+                        <br>
+                        <br>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="left-column" style="width: 42%;">
+                        <h3>Education</h3>
+                        <div *ngFor="let education of educationData">
+
+                            <p><strong><span
+                                        style="font-size: large !important;">{{education.program}}</span><br><i><span
+                                            style="text-align: right !important;">{{education.institution}}</span></i></strong><br>
+                                <i style="font-size: small;">{{education.start_date.slice(0, 4)}} -
+                                    <span *ngIf="education.is_present">Present</span>
+                                    <span *ngIf="!education.is_present">{{education.end_date.slice(0,
+                                        4)}}</span></i><br>
+                                {{education.description}}<br>
+                            </p>
+                        </div>
+                        <hr style="text-align: center !important; width:80% !important">
+                        <h3>Skills</h3>
+                        <ul>
+                            <li *ngFor="let skill of skillData">{{skill.skill_name}}</li>
+                        </ul>
+                        <hr style="text-align: center !important; width:80% !important">
+                        <h3>Certificates and Awards</h3>
+                        <p *ngFor="let cert of certificateData"><strong>{{cert.certi_name}}</strong><br> <i
+                                style="font-size: small;">{{cert.start_date.slice(0, 4)}} -
+                                <span *ngIf="cert.is_present">Present</span>
+                                <span *ngIf="!cert.is_present">{{cert.end_date.slice(0, 4)}}</span></i><br>
+                            {{cert.description}}
+                        </p>
+                    </div>
+
+                    <div class="right-column" style="width: 42%;">
+                        <h3>Projects</h3>
+                        <div *ngFor="let prj of projectData">
+                            <p><strong>{{prj.project_name}}</strong><br>
+                                {{prj.description}}
+                            </p>
+                        </div>
+                        <hr style="text-align: center !important; width:80% !important">
+                        <h3>Experience</h3>
+                        <div *ngFor="let exp of experienceData">
+                            <p><strong style="text-align: left;">{{exp.position}}</strong><i><span
+                                        style="text-align: right;display: flex;font-size: small;">{{exp.company}}</span></i>
+                                <i style="font-size: small;">{{exp.start_date.slice(0, 7)}} - <span
+                                        *ngIf="exp.is_present">Present</span><span
+                                        *ngIf="!exp.is_present">{{exp.end_date.slice(0, 7)}}</span></i><br>
+                                {{exp.description}}
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div *ngIf="resumeData.template_id==2">
+            <div id="resume-container" class="container"
+                style="margin: auto; display: flex;border: rgb(97, 95, 95) solid;border-radius: 10px;border-width: 1px; width: 90%;">
+                <div id="resume" class="resume"
+                    style="display: flex;flex-wrap: wrap;justify-content: center;width: 100%;">
+                    <div style="width: 100%;text-align: center;">
+                        <br>
+                        <br>
+                        <h1>{{resumeData.full_name}}</h1>
+                        <i style="font-size: smaller;">{{resumeData.description}}</i>
+                        <br>
+                        <br>
+                        {{resumeData.bio}}
+                        <p>Email: {{resumeData.email}} | Phone: {{resumeData.contact_no}}</p>
+                        <p>LinkedIn: {{resumeData.linkedin}} | Github : {{resumeData.github}}
+                        </p>
+                        <br>
+                        <br>
+                        <hr style="text-align: center !important; width:100% !important;">
+                        <br>
+                        <br>
+                    </div>
+                    <br>
+                    <br>
+                    <div style="margin-left: 10%;">
+                        <h3>Education</h3>
+                        <div *ngFor="let education of educationData" style="width:90% !important">
+
+                            <p><strong><span
+                                        style="font-size: large !important;">{{education.program}}</span><br><i><span
+                                            style="text-align: right !important;">{{education.institution}}</span></i></strong><br>
+                                <i style="font-size: small;">{{education.start_date.slice(0, 4)}} -
+                                    <span *ngIf="education.is_present">Present</span>
+                                    <span *ngIf="!education.is_present">{{education.end_date.slice(0,
+                                        4)}}</span></i><br>
+                                {{education.description}}<br>
+                            </p>
+                        </div>
+                        <hr style="text-align: center !important; width:95% !important;">
+                        <h3>Skills</h3>
+                        <ul style="width:90% !important">
+                            <li *ngFor="let skill of skillData">{{skill.skill_name}}</li>
+                        </ul>
+                        <hr style="text-align: center !important; width:95% !important">
+                        <h3>Certificates and Awards</h3>
+                        <p *ngFor="let cert of certificateData" style="width:90% !important">
+                            <strong>{{cert.certi_name}}</strong><br> <i
+                                style="font-size: small;">{{cert.start_date.slice(0, 4)}} -
+                                <span *ngIf="cert.is_present">Present</span>
+                                <span *ngIf="!cert.is_present">{{cert.end_date.slice(0, 4)}}</span></i><br>
+                            {{cert.description}}
+                        </p>
+                        <hr style="text-align: center !important; width:95% !important">
+                        <h3>Projects</h3>
+                        <div *ngFor="let prj of projectData" style="width:90% !important">
+                            <p><strong>{{prj.project_name}}</strong><br>
+                                {{prj.description}}
+                            </p>
+                        </div>
+                        <hr style="text-align: center !important; width:95% !important">
+                        <h3>Experience</h3>
+                        <div *ngFor="let exp of experienceData" style="width:90% !important">
+                            <p><strong style="text-align: left;">{{exp.position}}</strong><i><span
+                                        style="text-align: right;display: flex;font-size: small;">{{exp.company}}</span></i>
+                                <i style="font-size: small;">{{exp.start_date.slice(0, 7)}} - <span
+                                        *ngIf="exp.is_present">Present</span><span
+                                        *ngIf="!exp.is_present">{{exp.end_date.slice(0, 7)}}</span></i><br>
+                                {{exp.description}}
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div
+            style="text-align: center !important; display: flex !important; margin: auto !important; justify-content: center !important;">
+            <button class="btn btn-primary" (click)="download()">Download My Resume
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

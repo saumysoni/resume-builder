@@ -1,0 +1,19 @@
+/* Styles for the search container and button */
+.search-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.gsc-search-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+/* Styles for the input box */
+.gsc-input-box {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+}

@@ -1,0 +1,369 @@
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header">
+            <h2>Create Resume</h2>
+        </div>
+        <div class="card-body">
+            <div class="progress mt-3">
+                <div class="progress-bar" role="progressbar" [style.width]="(currentStep / 6) * 100 + '%'">
+                    Step {{ (currentStep)}} of 6
+                </div>
+            </div>
+            <br>
+            
+            <form [formGroup]="resumeForm" (ngSubmit)="nextStep()" *ngIf="currentStep === 1">
+                <div class="mt-3" style="margin: auto;text-align: center;">
+                    <hr>
+                    <button class="btn btn-primary" (click)="prevStep()" [disabled]="true">Previous</button>&nbsp;
+                    <button class="btn btn-primary" (click)="nextStep()" [disabled]="!resumeForm.valid">Next</button>
+                    <!-- <input type="submit" class="btn btn-primary" value="Save and Next"> -->
+                </div>
+                <br>
+                <!-- General Information -->
+                <div class="form-group">
+                    <label for="full_name">Full Name:</label>
+                    <input type="text" id="full_name" class="form-control" formControlName="full_name">
+                    <div *ngIf="resumeForm.get('full_name')?.hasError('required') && resumeForm.get('full_name')?.touched"
+                        class="text-danger">
+                        Full Name is required.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact_no">Contact Number:</label>
+                    <input type="text" id="contact_no" class="form-control" formControlName="contact_no">
+                    <div *ngIf="resumeForm.get('contact_no')?.hasError('required') && resumeForm.get('contact_no')?.touched"
+                        class="text-danger">
+                        Contact Number is required.
+                    </div>
+                    <div *ngIf="resumeForm.get('contact_no')?.hasError('maxLength') && resumeForm.get('contact_no')?.touched"
+                        class="text-danger">
+                        Contact Number should be at most 10 characters long.
+                    </div>
+                    <!-- <div *ngIf="resumeForm.get('contact_no')?.hasError('nonNumeric') && resumeForm.get('contact_no')?.touched"
+                        class="text-danger">
+                        Contact Number should contain only numeric characters.
+                    </div> -->
+                </div>
+
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" class="form-control" formControlName="email">
+                    <div *ngIf="resumeForm.get('email')?.hasError('required') && resumeForm.get('email')?.touched"
+                        class="text-danger">
+                        Email is required.
+                    </div>
+                    <div *ngIf="resumeForm.get('email')?.hasError('email') && resumeForm.get('email')?.touched"
+                        class="text-danger">
+                        Please enter a valid email address.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Your Description</label>
+                    <input type="text" id="description" class="form-control" formControlName="description">
+                    <div *ngIf="resumeForm.get('description')?.hasError('required') && resumeForm.get('description')?.touched"
+                        class="text-danger">
+                        Description is required.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Your Bio</label>
+                    <input type="text" id="bio" class="form-control" formControlName="bio">
+                </div>
+
+                <div class="form-group">
+                    <label for="github">GitHub:</label>
+                    <input type="text" id="github" class="form-control" formControlName="github">
+                    <!-- Add pattern validation message if needed -->
+                </div>
+
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn:</label>
+                    <input type="text" id="linkedin" class="form-control" formControlName="linkedin">
+                    <!-- Add pattern validation message if needed -->
+                </div>
+                <br>
+            </form>
+
+            <!-- Education -->
+            <form [formGroup]="eduForm" *ngIf="currentStep === 2">
+                <div class="mt-3" style="margin: auto;text-align: center;">
+                    <hr>
+                    <button class="btn btn-primary" (click)="prevStep()" [disabled]="!eduForm.valid">Previous</button>&nbsp;
+                    <button class="btn btn-primary" (click)="nextStep()" [disabled]="!eduForm.valid">Next</button>
+                </div>
+                <br>
+                <div class="card">
+                    <h3 class="card-header">Education</h3>
+                    <div class="card-body" formArrayName="education">
+                        <div *ngFor="let edu of education.controls; let i = index" [formGroupName]="i" class="mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <label for="program">Program:</label>
+                                    <input type="text" id="program" class="form-control" formControlName="program">
+                                    <div *ngIf="edu.get('program')?.hasError('required') && edu.get('program')?.touched"
+                                        class="text-danger">
+                                        Program is required.
+                                    </div>
+                                    <label for="institution">Institution:</label>
+                                    <input type="text" id="institution" class="form-control"
+                                        formControlName="institution">
+                                    <div *ngIf="edu.get('institution')?.hasError('required') && edu.get('institution')?.touched"
+                                        class="text-danger">
+                                        Institution is required.
+                                    </div>
+                                    <label for="description">Description:</label>
+                                    <input type="text" id="description" class="form-control"
+                                        formControlName="description">
+                                    <div *ngIf="edu.get('description')?.hasError('required') && edu.get('description')?.touched"
+                                        class="text-danger">
+                                        Description is required.
+                                    </div>
+
+                                    <label for="start_date">Start-date:</label>
+                                    <input type="date" id="start_date" class="form-control"
+                                        formControlName="start_date">
+                                    <div *ngIf="edu.get('start_date')?.hasError('required') && edu.get('start_date')?.touched"
+                                        class="text-danger">
+                                        Start-date is required.
+                                    </div>
+                                    <br>
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" id="is_present" class="form-check-input"
+                                            formControlName="is_present">
+                                        <label for="is_present" class="form-check-label">Present</label>
+                                    </div>
+                                    <br>
+
+                                    <div>
+                                        <label for="end_date">End-date:</label>
+                                        <input type="date" id="end_date" class="form-control"
+                                            formControlName="end_date">
+                                    </div>
+
+                                    <button type="button" (click)="deleteEducation(i)"
+                                        class="btn btn-danger mt-2">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" (click)="addEducation()" class="btn btn-primary">Add
+                            Education</button>
+                    </div>
+                </div>
+                <br>
+
+            </form>
+            <!-- Experience -->
+            <form [formGroup]="expForm" *ngIf="currentStep === 3">
+                <div class="mt-3" style="margin: auto;text-align: center;">
+                    <hr>
+                    <button class="btn btn-primary" (click)="prevStep()" [disabled]="!expForm.valid">Previous</button>&nbsp;
+                    <button class="btn btn-primary" (click)="nextStep()" [disabled]="!expForm.valid">Next</button>
+                </div>
+                <br>
+                <div class="card">
+                    <h3 class="card-header">Experience</h3>
+                    <div class="card-body" formArrayName="experience">
+                        <div *ngFor="let exp of experience.controls; let i = index" [formGroupName]="i" class="mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <label for="company">Company:</label>
+                                    <input type="text" id="company" class="form-control" formControlName="company">
+                                    <div *ngIf="exp.get('company')?.hasError('required') && exp.get('company')?.touched"
+                                        class="text-danger">
+                                        Company is required.
+                                    </div>
+                                    <label for="position">Position:</label>
+                                    <input type="text" id="position" class="form-control" formControlName="position">
+                                    <div *ngIf="exp.get('position')?.hasError('required') && exp.get('position')?.touched"
+                                        class="text-danger">
+                                        Position is required.
+                                    </div>
+                                    <label for="description">Description:</label>
+                                    <input type="text" id="description" class="form-control"
+                                        formControlName="description">
+                                    <!-- Add similar input fields for other project details -->
+                                    <div *ngIf="exp.get('description')?.hasError('required') && exp.get('description')?.touched"
+                                        class="text-danger">
+                                        Description is required.
+                                    </div>
+                                    <label for="start_date">Start-date:</label>
+                                    <input type="date" id="start_date" class="form-control"
+                                        formControlName="start_date">
+                                    <div *ngIf="exp.get('start_date')?.hasError('required') && exp.get('start_date')?.touched"
+                                        class="text-danger">
+                                        Start-date is required.
+                                    </div>
+                                    <br>
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" id="is_present" class="form-check-input"
+                                            formControlName="is_present">
+                                        <label for="is_present" class="form-check-label">Present</label>
+                                    </div>
+                                    <br>
+
+                                    <div>
+                                        <label for="end_date">End-date:</label>
+                                        <input type="date" id="end_date" class="form-control"
+                                            formControlName="end_date">
+                                    </div>
+
+                                    <br>
+                                    <button type="button" (click)="deleteExperience(i)"
+                                        class="btn btn-danger mt-2">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" (click)="addExperience()" class="btn btn-primary">Add
+                            Experience</button>
+                    </div>
+                </div>
+                <br>
+
+            </form>
+
+            <!-- Projects -->
+            <form [formGroup]="prjForm" *ngIf="currentStep === 4">
+                <div class="mt-3" style="margin: auto;text-align: center;">
+                    <hr>
+                    <button class="btn btn-primary" (click)="prevStep()" [disabled]="!prjForm.valid">Previous</button>&nbsp;
+                    <button class="btn btn-primary" (click)="nextStep()" [disabled]="!prjForm.valid">Next</button>
+                </div>
+                <br>
+                <div class="card">
+                    <h3 class="card-header">Projects</h3>
+                    <div class="card-body" formArrayName="projects">
+                        <div *ngFor="let proj of projects.controls; let i = index" [formGroupName]="i" class="mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <label for="project_name">Project Name:</label>
+                                    <input type="text" id="project_name" class="form-control"
+                                        formControlName="project_name">
+                                    <!-- Add similar input fields for other project details -->
+                                    <div *ngIf="proj.get('project_name')?.hasError('required') && proj.get('project_name')?.touched"
+                                        class="text-danger">
+                                        Project Name is required.
+                                    </div>
+                                    <label for="description">Description:</label>
+                                    <input type="text" id="description" class="form-control"
+                                        formControlName="description">
+                                    <!-- Add similar input fields for other project details -->
+                                    <div *ngIf="proj.get('description')?.hasError('required') && proj.get('description')?.touched"
+                                        class="text-danger">
+                                        Description is required.
+                                    </div>
+                                    <button type="button" (click)="deleteProject(i)"
+                                        class="btn btn-danger mt-2">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" (click)="addProject()" class="btn btn-primary">Add Project</button>
+                    </div>
+                </div>
+                <br>
+
+            </form>
+            <!-- Skills -->
+            <form [formGroup]="sklForm" *ngIf="currentStep === 5">
+                <div class="mt-3" style="margin: auto;text-align: center;">
+                    <hr>
+                    <button class="btn btn-primary" (click)="prevStep()" [disabled]="!sklForm.valid">Previous</button>&nbsp;
+                    <button class="btn btn-primary" (click)="nextStep()" [disabled]="!sklForm.valid">Next</button>
+                </div>
+                <br>
+                <div class="card">
+                    <h3 class="card-header">Skills</h3>
+                    <div class="card-body" formArrayName="skills">
+                        <div *ngFor="let sk of skills.controls; let i = index" [formGroupName]="i" class="mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <label for="skill_name">Skill Name:</label>
+                                    <input type="text" id="skill_name" class="form-control"
+                                        formControlName="skill_name">
+                                    <!-- Add similar input fields for other skill details -->
+                                    <div *ngIf="sk.get('skill_name')?.hasError('required') && sk.get('skill_name')?.touched"
+                                        class="text-danger">
+                                        Skill Name is required.
+                                    </div>
+                                    <button type="button" (click)="deleteSkill(i)"
+                                        class="btn btn-danger mt-2">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" (click)="addSkill()" class="btn btn-primary">Add Skill</button>
+
+                    </div>
+                </div>
+                <br>
+            </form>
+
+            <!-- Certificate -->
+            <form [formGroup]="certiForm" *ngIf="currentStep === 6">
+                <div class="mt-3" style="margin: auto;text-align: center;">
+                    <hr>
+                    <button class="btn btn-primary" (click)="prevStep()" [disabled]="!certiForm.valid">Previous</button>&nbsp;
+                    <button class="btn btn-primary" (click)="nextStep()" [disabled]="!certiForm.valid">Submit and Save</button>
+                </div>
+                <br>
+                <div class="card">
+                    <h3 class="card-header">Certificates</h3>
+                    <div class="card-body" formArrayName="certificate">
+                        <div *ngFor="let cert of certificate.controls; let i = index" [formGroupName]="i" class="mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <label for="certi_name">Certificate Name:</label>
+                                    <input type="text" id="certi_name" class="form-control"
+                                        formControlName="certi_name">
+                                    <div *ngIf="cert.get('certi_name')?.hasError('required') && cert.get('certi_name')?.touched"
+                                        class="text-danger">
+                                        Certificate Name is required.
+                                    </div>
+
+                                    <label for="start_date">Start Date:</label>
+                                    <input type="date" id="start_date" class="form-control"
+                                        formControlName="start_date">
+                                    <div *ngIf="cert.get('start_date')?.hasError('required') && cert.get('start_date')?.touched"
+                                        class="text-danger">
+                                        Start Date is required.
+                                    </div>
+                                    <br>
+                                    <label for="is_present">Is Present:</label>
+                                    <input type="checkbox" id="is_present" class="form-check-input"
+                                        formControlName="is_present">
+                                    <div *ngIf="cert.get('is_present')?.hasError('required') && cert.get('is_present')?.touched"
+                                        class="text-danger">
+                                        Please mark if the certificate is present.
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div>
+                                        <label for="end_date">End Date:</label>
+                                        <input type="date" id="end_date" class="form-control"
+                                            formControlName="end_date">
+                                    </div>
+
+                                    <label for="description">Description:</label>
+                                    <textarea id="description" class="form-control"
+                                        formControlName="description"></textarea>
+
+                                    <button type="button" (click)="deleteCertificate(i)"
+                                        class="btn btn-danger mt-2">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" (click)="addCertificate()" class="btn btn-primary">Add
+                            Certificate</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <br>
+    <button class=" btn btn-primary" routerLink="/list" style="margin: auto; display: flex">Back to lists</button>
+    <br>
+    <br>
+</div>

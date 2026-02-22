@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="window">
+            <br>
+            <br>
+            <div>
+                <ul style=" display: flex; margin: auto; justify-content: center; align-items: center;">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <form (ngSubmit)="submitTemplate()">
+                    <li class="partition"><input type="radio" name="test" id="cb1" checked="true" [(ngModel)]="templateSelection" value="1" />
+                        <label for="cb1"><img src="assets/img5.jpg" style="height: 300px !important; width: auto;" /></label>
+                    </li>
+                    <li class="partition" style="margin-right: 40px !important;"><input type="radio" name="test"
+                            id="cb2" [(ngModel)]="templateSelection" value="2" />
+                        <label for="cb2"><img src="assets/img6.jpg" style="height: 300px !important; width: auto;" /></label>
+                    </li>
+                    <br>
+                    <input type="submit" class="btn btn-primary" style="display: flex;margin: auto;">
+                    </form>
+
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+</html>

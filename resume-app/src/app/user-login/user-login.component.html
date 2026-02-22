@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body style="
+    background-image: url('assets/img1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  ">
+  <div class="container" style="min-height: 100vh">
+    <div class="row" style="
+        text-align: center;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+      ">
+      <div class="col-md-7" style="text-align: center">
+        <br />
+        <br />
+        <div class="card" style="margin: 30px; padding: 30px">
+          <!-- Pills navs -->
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" (click)="loginForm()" class="btn btn-primary">
+              Login
+            </button>
+            &nbsp;
+            <button type="button" (click)="registerForm()" class="btn btn-primary">
+              Register
+            </button>
+          </div>
+          <br />
+          <br />
+          <!-- Pills navs -->
+
+          <!-- Pills content -->
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login"
+              *ngIf="flag">
+              <form [formGroup]="loginFormBuilder" (ngSubmit)="login()">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input type="email" id="email" class="form-control" formControlName="email"
+                    placeholder="Email or username" />
+                    <div *ngIf="
+                        loginFormBuilder
+                          .get('email')
+                          ?.hasError('required') &&
+                        loginFormBuilder.get('email')?.touched
+                      " class="text-danger">
+                      Email is required.
+                    </div>
+                    <div *ngIf="
+                        loginFormBuilder.get('email')?.hasError('email') &&
+                        loginFormBuilder.get('email')?.touched
+                      " class="text-danger">
+                      Invalid email format.
+                    </div>
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <input type="password" id="password" class="form-control" formControlName="password"
+                    placeholder="Password" />
+                    <div *ngIf="
+                        registerFormBuilder
+                          .get('password')
+                          ?.hasError('required') &&
+                        registerFormBuilder.get('password')?.touched
+                      " class="text-danger">
+                      Password is required.
+                    </div>
+                </div>
+
+                <!-- 2 column grid layout -->
+                <div class="row mb-4">
+                  <div class="col-md-6 d-flex justify-content-center">
+                    <!-- Checkbox -->
+                    <div class="form-check mb-3 mb-md-0">
+                      <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+                      <label class="form-check-label" for="loginCheck">
+                        Remember me
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 d-flex justify-content-center">
+                    <!-- Simple link -->
+                    <a href="#!">Forgot password?</a>
+                  </div>
+                </div>
+
+                <!-- Submit button -->
+                <input type="submit" value="Sign In" class="btn btn-primary btn-block mb-4" />
+
+                <!-- Register buttons -->
+                <div class="text-center">
+                  <p>Not a member? <a (click)="registerForm()">Register</a></p>
+                </div>
+              </form>
+            </div>
+            <div class="tab-pane fade show active" id="pills-register" role="tabpanel" aria-labelledby="tab-register"
+              *ngIf="!flag">
+              <form [formGroup]="registerFormBuilder" (ngSubmit)="register()">
+                <!-- First Name -->
+                <div class="form-group row">
+                  <label for="fname" class="col-sm-4 col-form-label" style="text-align: left;">First Name:</label>
+                  <div class="col-sm-8">
+                    <input type="text" id="fname" formControlName="fname" class="form-control" />
+                    <div *ngIf="fname?.hasError('required') && fname?.touched" class="text-danger">First Name is
+                      Required</div>
+                  </div>
+                </div>
+                <br />
+
+                <!-- Last Name -->
+                <div class="form-group row">
+                  <label for="lname" class="col-sm-4 col-form-label" style="text-align: left;">Last Name:</label>
+                  <div class="col-sm-8">
+                    <input type="text" id="lname" formControlName="lname" class="form-control" />
+                    <div *ngIf="
+                        registerFormBuilder
+                          .get('lname')
+                          ?.hasError('required') &&
+                        registerFormBuilder.get('lname')?.touched
+                      " class="text-danger">
+                      Last Name is required.
+                    </div>
+                  </div>
+                </div>
+                <br />
+
+                <!-- Contact Number -->
+                <div class="form-group row">
+                  <label for="contactno" class="col-sm-4 col-form-label" style="text-align: left;">Contact Number:</label>
+                  <div class="col-sm-8">
+                    <input type="text" id="contactno" maxlength="10" formControlName="contactno" class="form-control" />
+                    <div *ngIf="registerFormBuilder.get('contactno')?.hasError('pattern')&&
+                        registerFormBuilder.get('contactno')?.touched
+                      " class="text-danger">
+                      Invalid Contact number
+                    </div>
+                  </div>
+                </div>
+                <br />
+
+                <!-- Email -->
+                <div class="form-group row">
+                  <label for="email" class="col-sm-4 col-form-label" style="text-align: left;">Email:</label>
+                  <div class="col-sm-8">
+                    <input type="text" id="email" formControlName="email" class="form-control" />
+                    <div *ngIf="
+                        registerFormBuilder
+                          .get('email')
+                          ?.hasError('required') &&
+                        registerFormBuilder.get('email')?.touched
+                      " class="text-danger">
+                      Email is required.
+                    </div>
+                    <div *ngIf="
+                        registerFormBuilder.get('email')?.hasError('email') &&
+                        registerFormBuilder.get('email')?.touched
+                      " class="text-danger">
+                      Invalid email format.
+                    </div>
+                  </div>
+                </div>
+                <br />
+
+                <!-- Password -->
+                <div class="form-group row">
+                  <label for="password" class="col-sm-4 col-form-label" style="text-align: left;">Password:</label>
+                  <div class="col-sm-8">
+                    <input type="password" id="password" formControlName="password" class="form-control" />
+                    <div *ngIf="
+                        registerFormBuilder
+                          .get('password')
+                          ?.hasError('required') &&
+                        registerFormBuilder.get('password')?.touched
+                      " class="text-danger">
+                      Password is required.
+                    </div>
+                  </div>
+                </div>
+                <br />
+
+                <!-- Confirm Password -->
+                <div class="form-group row">
+                  <label for="cpassword" class="col-sm-4 col-form-label" style="text-align: left;">Confirm Password:</label>
+                  <div class="col-sm-8">
+                    <input type="password" id="cpassword" formControlName="cpassword" class="form-control" />
+                    <div *ngIf="registerFormBuilder.get('cpassword')?.hasError('required') && registerFormBuilder.get('cpassword')?.touched" class="text-danger">
+                      Confirm Password is required.
+                    </div>
+                    <div *ngIf="registerFormBuilder?.hasError('passwordMismatch') && registerFormBuilder.get('cpassword')?.touched" class="text-danger">
+                      Passwords do not match.
+                    </div>
+                  </div>
+                </div>
+                <br />
+
+                <!-- Checkbox -->
+                <div class="form-check d-flex justify-content-center mb-4">
+                  <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
+                    aria-describedby="registerCheckHelpText">
+                  <label class="form-check-label" for="registerCheck">
+                    I have read and agree to the terms
+                  </label>
+                </div>
+
+                <!-- Submit button -->
+                <input type="submit" [disabled]="!registerFormBuilder.valid" class="btn btn-primary btn-block mb-3">
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Pills content -->
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
