@@ -136,7 +136,7 @@ resume-builder/
     ├── angular.json                   # Angular Build Configuration
     ├── package.json                   # NPM Dependencies & Scripts
     └── tsconfig.json                  # TypeScript Compiler Settings
-
+```
 ---
 
 ## 👥 Team & Acknowledgments
