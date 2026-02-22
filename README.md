@@ -77,13 +77,73 @@ The application guides users through 6 intuitive steps to fill out their customi
 After entering all exact details, the program creates a customized resume. The user is shown a preview and given the option to download it.
 ![Download Resume](./images/download_resume.png)
 
+
+## 📁 Project Structure
+
+The project follows a decoupled architecture with a RESTful .NET API and a component-based Angular frontend.
+
+```text
+resume-builder/
+├── images/
+│   ├── download_resume.png
+│   ├── home_page.png
+│   ├── resume_list.png
+│   ├── step_1.png
+│   ├── step_2.png
+│   ├── step_3.png
+│   ├── step_4.png
+│   ├── step_5.png
+│   ├── step_6.png
+│   ├── template_selection.png
+│   └── user_registration.png
+│  
+├── resume-api/                        # Backend: ASP.NET Core 7.0 Web API
+│   ├── Controllers/                   # REST API Endpoints
+│   │   ├── CertificateController.cs
+│   │   ├── EducationController.cs
+│   │   ├── ExperienceController.cs
+│   │   ├── ProjectController.cs
+│   │   ├── ResumeController.cs
+│   │   ├── ResumeUserController.cs
+│   │   ├── SkillController.cs
+│   │   └── UserController.cs
+│   ├── Models/                        # Entity Framework Core Data Models
+│   │   ├── AppDbContext.cs            # Database Context (MS-SQL)
+│   │   └── [Entities].cs              # User, Resume, Skill, etc.
+│   ├── Program.cs                     # API Configuration & Middleware
+│   └── appsettings.json               # DB Connection & Environment Settings
+│
+└── resume-app/                        # Frontend: Angular Framework
+    ├── src/
+    │   ├── app/                       # Core Application logic & Modules
+    │   │   ├── app.module.ts          # Main Module initialization
+    │   │   ├── app-routing.module.ts  # Application Route Definitions
+    │   │   ├── app.service.ts         # Central Data & API Communication Service
+    │   │   ├── informative/           # Landing Page & "About" UI
+    │   │   ├── user-login/            # Authentication & Registration UI
+    │   │   ├── resume-list/           # Dashboard (My-Documents view)
+    │   │   ├── select-template/       # Resume Template Gallery
+    │   │   ├── resume-create/         # Multi-step creation form (6 steps)
+    │   │   └── resume-display/        # Resume Preview & PDF Export logic
+    │   ├── assets/                    # Static Resources & Graphics
+    │   │   ├── logo.png               # Project Branding
+    │   │   └── [img1-6].jpg           # Template Thumbnails
+    │   ├── index.html                 # Main Single Page Application Entry
+    │   ├── main.ts                    # Angular Bootstrap File
+    │   ├── styles.css                 # Global Application Styling
+    │   ├── dom-to-image.d.ts          # Type Definitions for Image Export
+    │   └── html2pdf.d.ts              # Type Definitions for PDF Generation
+    ├── angular.json                   # Angular Build Configuration
+    ├── package.json                   # NPM Dependencies & Scripts
+    └── tsconfig.json                  # TypeScript Compiler Settings
+
 ---
 
 ## 👥 Team & Acknowledgments
 
 **Created By:**
-* Kavan Hemang Shukla (20BCE277)
 * Saumya Akshay Soni (20BCE285)
+* Kavan Hemang Shukla (20BCE277)
 
 **Guided By:**
 * Prof. Daiwat A Vyas (Department of Computer Science and Engineering, Institute of Technology, Nirma University)
